@@ -14,7 +14,7 @@ def main():
 
     print(data)  # Comment to hide what Telegram is sending you
     chat_id = data['message']['chat']['id']
-    if hasattr(data['message'], 'text'):
+    if "text" in data["message"]:
         message = data['message']['text']
     else:
         message = 'Lo siento, no reconozco el mensaje'
