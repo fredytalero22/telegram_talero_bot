@@ -29,7 +29,7 @@ def main():
         message_url = BOT_URL + 'sendMessage'
     elif "callback_query" in data:
         json_data = {
-            "callback_query_id": data["callback_query"][id],
+            "callback_query_id": data["callback_query"]["id"],
             "text": "Mi primer answer callback query",
         }
 
