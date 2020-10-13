@@ -14,10 +14,13 @@ def main():
 
     print(data)  # Comment to hide what Telegram is sending you
     
-    if "text" in data["message"]:
+|   if "message" in data
         chat_id = data['message']['chat']['id']
-        message = data['message']['text']
-    else:
+        if "text" in data["message"]:
+            message = data['message']['text']
+        else:
+            message = "Lo siento, no reconozco el mensaje"
+    else if "callback_query" in data
         chat_id = data['callback_query']['from']['id']
         message = 'Mensaje de Callback Query'
 
