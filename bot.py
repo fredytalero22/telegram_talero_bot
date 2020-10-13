@@ -20,16 +20,21 @@ def main():
             message = data['message']['text']
         else:
             message = "Lo siento, no reconozco el mensaje"
+
+        json_data = {
+            "chat_id": chat_id,
+            "text": message,
+        }
+
+        message_url = BOT_URL + 'sendMessage'
     elif "callback_query" in data:
-        chat_id = data['callback_query']['from']['id']
-        message = 'Mensaje de Callback Query'
+        json_data = {
+            "callback_query_id": data["callback_query"][id],
+            "text": "Mi primer answer callback query",
+        }
 
-    json_data = {
-        "chat_id": chat_id,
-        "text": message,
-    }
+        message_url = BOT_URL + 'answerCallbackQuery'
 
-    message_url = BOT_URL + 'sendMessage'
     requests.post(message_url, json=json_data)
 
     return ''
