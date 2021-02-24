@@ -18,15 +18,20 @@ def main():
         chat_id = data['message']['chat']['id']
         if "text" in data["message"]:
             message = data['message']['text']
+            json_data = {
+                "chat_id": chat_id,
+                "text": message,
+            }
+
+            message_url = BOT_URL + 'sendMessage'
         else:
             message = "Lo siento, no reconozco el mensaje"
-
-        json_data = {
-            "chat_id": chat_id,
-            "text": message,
-        }
-
-        message_url = BOT_URL + 'sendMessage'
+            json_data = {
+                "chat_id": chat_id,                
+                "message_id": data['message']['message_id'],
+                "text": message,
+            }
+            message_url = BOT_URL + 'editMessageText'
     elif "callback_query" in data:
         json_data = {
             "callback_query_id": data["callback_query"]["id"],
