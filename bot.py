@@ -12,26 +12,18 @@ app = Flask(__name__)
 def main():  
     data = request.json
 
+    print(request)
     print(data)  # Comment to hide what Telegram is sending you
     
     if "message" in data:
         chat_id = data['message']['chat']['id']
-        if "text" in data["message"] and data['message']['text'] == "si":
-            message = data['message']['text']
-            json_data = {
-                "chat_id": chat_id,
-                "text": message,
-            }
+        message = data['message']['text']
+        json_data = {
+            "chat_id": chat_id,
+            "text": message,
+        }
 
-            message_url = BOT_URL + 'sendMessage'
-        else:
-            message = "Lo siento, no reconozco el mensaje"
-            json_data = {
-                "chat_id": chat_id,                
-                "message_id": data['message']['message_id'],
-                "text": message,
-            }
-            message_url = BOT_URL + 'editMessageText'
+        message_url = BOT_URL + 'sendMessage'
     elif "callback_query" in data:
         json_data = {
             "callback_query_id": data["callback_query"]["id"],
