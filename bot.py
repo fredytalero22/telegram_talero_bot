@@ -12,7 +12,7 @@ app = Flask(__name__)
 def main():  
     data = request.json
 
-    print(request.text)
+    print(request.content)
     print(data)  # Comment to hide what Telegram is sending you
     
     if "message" in data:
