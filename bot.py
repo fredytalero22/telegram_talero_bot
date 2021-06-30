@@ -23,6 +23,7 @@ def main():
         }
 
         message_url = BOT_URL + 'sendMessage'
+        requests.post(message_url, json=json_data)
     elif "callback_query" in data:
         json_data = {
             "callback_query_id": data["callback_query"]["id"],
@@ -30,8 +31,9 @@ def main():
         }
 
         message_url = BOT_URL + 'answerCallbackQuery'
-
-    requests.post(message_url, json=json_data)
+        requests.post(message_url, json=json_data)
+    else:
+        message_url = BOT_URL + 'answerCallbackQuery'
 
     return ''
 
